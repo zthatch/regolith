@@ -82,6 +82,7 @@ class ManuRevAdderHelper(DbHelperBase):
             sys.exit("This entry appears to already exist in the collection")
         else:
             pdoc = {}
+        #TODO change the due_date here and in the test outputs to be a string rather than date format for JSON
         pdoc.update({'claimed_found_what': [],
                      'claimed_why_important': [],
                      'did_how': [],

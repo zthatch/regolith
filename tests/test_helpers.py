@@ -375,11 +375,19 @@ helper_map = [
      ),
     (["helper", "v_meetings", "--test"], "Meeting validator helper\n")
 ]
+db_srcs = ["mongo", "fs"]
 
 
+@pytest.mark.parametrize("db_src", db_srcs)
 @pytest.mark.parametrize("hm", helper_map)
-def test_helper_python(hm, make_db, capsys):
-    repo = Path(make_db)
+def test_helper_python(hm, db_src, make_db, make_mongodb, capsys):
+    if db_src == "fs":
+        repo = Path(make_db)
+    elif db_src == "mongo":
+        if make_mongodb is False:
+            pytest.skip("Mongoclient failed to start")
+        else:
+            repo = Path(make_mongodb)
     testfile = Path(__file__)
     os.chdir(repo)
 

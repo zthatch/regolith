@@ -89,7 +89,7 @@ def make_mongodb():
     os.chdir(repo)
     with open("README", "w") as f:
         f.write("testing " + name)
-    mongodbpath = os.path.join(repo, 'dbs')
+    mongodbpath = os.path.join(repo, 'db')
     os.mkdir(mongodbpath)
     with open("regolithrc.json", "w") as f:
         json.dump(
